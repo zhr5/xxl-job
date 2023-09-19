@@ -35,8 +35,9 @@ public class XxlJobAdminConfig implements InitializingBean, DisposableBean {
     @Override
     public void afterPropertiesSet() throws Exception {
         adminConfig = this;
-
+        //新建调度器
         xxlJobScheduler = new XxlJobScheduler();
+        //调度器初始化
         xxlJobScheduler.init();
     }
 
