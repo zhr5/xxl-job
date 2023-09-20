@@ -83,6 +83,15 @@ public class JobScheduleHelper {
                             for (XxlJobInfo jobInfo: scheduleList) {
 
                                 // time-ring jump
+                                //如果当前时间大于下一次触发时间加上五秒（超过下一次触发时间的五秒内的时间）
+                                //下一次触发时间过期时间超过5秒
+                                /*              过期处理策略
+                                                任务调度错过触发时间时的处理策略：
+
+                                                可能原因：服务重启；调度线程被阻塞，线程被耗尽；上次调度持续阻塞，下次调度被错过；
+                                                处理策略：
+                                                过期超5s：本次忽略，当前时间开始计算下次触发时间
+                                                过期5s内：立即触发一次，当前时间开始计算下次触发时间*/
                                 if (nowTime > jobInfo.getTriggerNextTime() + PRE_READ_MS) {
                                     // 2.1、trigger-expire > 5s：pass && make next-trigger-time
                                     logger.warn(">>>>>>>>>>> xxl-job, schedule misfire, jobId = " + jobInfo.getId());
@@ -96,6 +105,7 @@ public class JobScheduleHelper {
                                     }
 
                                     // 2、fresh next
+                                    //设置下一次的触发时间
                                     refreshNextValidTime(jobInfo, new Date());
 
                                 } else if (nowTime > jobInfo.getTriggerNextTime()) {

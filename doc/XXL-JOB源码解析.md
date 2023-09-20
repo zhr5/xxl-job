@@ -32,3 +32,6 @@ xxlJobScheduler.init();
 ```
 
 ![image-20230919230948353](images/XXL-JOB%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/image-20230919230948353.png)
+
+这里可以看出`XxlJobAdminConfig` 实现了`InitializingBean` ，bean初始化后会执行`afterPropertiesSet`
+
