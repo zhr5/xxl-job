@@ -14,7 +14,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Created by xuxueli on 17/3/10.
  */
 public class ExecutorRouteRound extends ExecutorRouter {
-
+    //<JobId%addressList.size(),count>
     private static ConcurrentMap<Integer, AtomicInteger> routeCountEachJob = new ConcurrentHashMap<>();
     private static long CACHE_VALID_TIME = 0;
 
