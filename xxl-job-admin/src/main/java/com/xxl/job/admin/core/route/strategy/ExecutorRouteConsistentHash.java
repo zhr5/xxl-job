@@ -62,7 +62,7 @@ public class ExecutorRouteConsistentHash extends ExecutorRouter {
         // -----------J1------------------
         TreeMap<Long, String> addressRing = new TreeMap<Long, String>();
         for (String address: addressList) {
-            for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
+            for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {//为每一个注册的节点分配100个虚拟节点，并算出这些节点的一致性hash值，存放到TreeMap中
                 long addressHash = hash("SHARD-" + address + "-NODE-" + i);
                 addressRing.put(addressHash, address);
             }
